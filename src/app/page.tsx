@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 
 type ConnectedUser = {
   id: string;
@@ -30,10 +30,10 @@ export default function Home() {
   const [selfId, setSelfId] = useState<string | null>(null);
   const [users, setUsers] = useState<ConnectedUser[]>([]);
   const [connectionStatus, setConnectionStatus] = useState<
-    "idle" | "connecting" | "connected" | "disconnected"
-  >("idle");
+    "connected" | "disconnected"
+  >("connected");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedNickname = nickname.trim();
@@ -42,7 +42,6 @@ export default function Home() {
       return;
     }
 
-    setConnectionStatus("connecting");
     setSelfId(null);
     setUsers([]);
     setJoinedNickname(trimmedNickname);

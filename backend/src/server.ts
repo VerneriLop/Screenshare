@@ -29,6 +29,7 @@ let currentStreamerId: string | null = null;
 
 const server = new WebSocketServer({ port: PORT });
 
+// Sends a JSON message to a client when its socket is still open.
 const sendMessage = (
   socket: WebSocket,
   payload: JoinedMessage | UsersUpdateMessage,
@@ -38,12 +39,14 @@ const sendMessage = (
   }
 };
 
+// Returns the list of users who have finished joining with a nickname.
 const getConnectedUsers = () => {
   return [...clients.values()]
     .filter((client) => client.nickname)
     .map(({ id, nickname }) => ({ id, nickname }));
 };
 
+// Broadcasts the latest user list and active streamer to every connected client.
 const broadcastState = () => {
   const payload: UsersUpdateMessage = {
     type: "users:update",
@@ -56,6 +59,7 @@ const broadcastState = () => {
   }
 };
 
+// Parses an incoming WebSocket message and safely ignores invalid JSON.
 const parseMessage = (rawMessage: RawData): JoinMessage | null => {
   try {
     return JSON.parse(rawMessage.toString()) as JoinMessage;
@@ -64,6 +68,7 @@ const parseMessage = (rawMessage: RawData): JoinMessage | null => {
   }
 };
 
+// Creates a client record and wires up message and disconnect handling.
 server.on("connection", (socket: WebSocket) => {
   const client: Client = {
     id: randomUUID(),
@@ -72,6 +77,8 @@ server.on("connection", (socket: WebSocket) => {
 
   clients.set(socket, client);
 
+  // Runs when frontend sends something.
+  // Handles join messages and stores the user's nickname once validated.
   socket.on("message", (rawMessage: RawData) => {
     const message = parseMessage(rawMessage);
 
@@ -99,6 +106,7 @@ server.on("connection", (socket: WebSocket) => {
     broadcastState();
   });
 
+  // Removes the disconnected client and clears the streamer if they were active.
   socket.on("close", () => {
     if (currentStreamerId === client.id) {
       currentStreamerId = null;
@@ -109,6 +117,7 @@ server.on("connection", (socket: WebSocket) => {
   });
 });
 
+// Logs the local WebSocket server address once the server starts listening.
 server.on("listening", () => {
   console.log(`WebSocket server listening on ws://localhost:${PORT}`);
 });
