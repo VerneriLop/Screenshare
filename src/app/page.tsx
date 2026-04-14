@@ -1,66 +1,27 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="grid min-h-screen grid-cols-1 bg-[radial-gradient(circle_at_top_left,_#f5f7fb_0,_transparent_30%),linear-gradient(180deg,_#f8fafc_0%,_#eef2f7_100%)] text-slate-900 md:grid-cols-[280px_1fr]">
+      <aside className="flex flex-col gap-6 border-b border-slate-200/80 bg-white/80 p-5 backdrop-blur md:border-r md:border-b-0 md:p-7">
+        <div className="flex flex-col gap-1.5">
+          <h2 className="text-lg font-bold">Users</h2>
+          <span className="text-sm text-slate-500">0 online</span>
+        </div>
+
+        <div className="flex min-h-30 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/90 p-5">
+          <p className="text-center leading-6 text-slate-500">
+            No users connected yet.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </aside>
+
+      <section className="flex min-h-[50vh] items-center justify-center p-6 md:min-h-screen md:p-8">
+        <button
+          className="w-full max-w-80 rounded-full bg-linear-to-br from-slate-950 to-blue-700 px-8 py-4 text-base font-bold tracking-[0.01em] text-slate-50 shadow-[0_18px_40px_rgba(29,78,216,0.22)] transition hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+          type="button"
+        >
+          Share your screen
+        </button>
+      </section>
+    </main>
   );
 }
