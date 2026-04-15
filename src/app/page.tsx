@@ -106,13 +106,13 @@ export default function Home() {
 
   if (!joinedNickname) {
     return (
-      <main className="screenshare-auth-bg flex min-h-screen items-center justify-center px-6 py-10 text-slate-900 sm:px-8">
-        <section className="w-full max-w-md rounded-[30px] border border-white/70 bg-white/88 p-7 shadow-[0_28px_90px_rgba(15,23,42,0.08)] backdrop-blur sm:p-9">
+      <main className="screenshare-auth-bg flex min-h-screen items-center justify-center px-6 py-10 text-slate-100 sm:px-8">
+        <section className="w-full max-w-md rounded-[30px] border border-white/10 bg-[#101a18]/88 p-7 shadow-[0_28px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:p-9">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <label className="block">
               <input
                 autoComplete="off"
-                className="w-full rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3.5 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-600 focus:bg-white focus:ring-4 focus:ring-emerald-100"
+                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-base text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-emerald-500 focus:bg-white/8 focus:ring-4 focus:ring-emerald-500/20"
                 name="nickname"
                 onChange={(event) => setNickname(event.target.value)}
                 placeholder="Enter your nickname"
@@ -133,14 +133,14 @@ export default function Home() {
   }
 
   return (
-    <main className="screenshare-app-bg grid min-h-screen grid-cols-1 text-slate-900 md:grid-cols-[300px_1fr]">
-      <aside className="flex flex-col gap-8 border-b border-slate-200/80 bg-white/72 px-4 py-6 backdrop-blur md:border-b-0 md:px-6 md:py-8">
+    <main className="screenshare-app-bg grid min-h-screen grid-cols-1 text-slate-100 md:grid-cols-[300px_1fr]">
+      <aside className="flex flex-col gap-8 border-b border-white/8 bg-[#0e1715]/82 px-4 py-6 backdrop-blur md:border-b-0 md:px-6 md:py-8">
         <div className="flex flex-col gap-2">
           <h2 className="text-lg font-semibold tracking-[-0.01em]">Users</h2>
-          <span className="text-sm text-slate-500">
+          <span className="text-sm text-slate-400">
             {users.length} online
           </span>
-          <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+          <span className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-300/75">
             {connectionStatus}
           </span>
         </div>
@@ -153,20 +153,20 @@ export default function Home() {
               return (
                 <div
                   key={user.id}
-                  className="rounded-2xl border border-white/80 bg-slate-50/75 px-4 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
+                  className="rounded-2xl border border-white/8 bg-white/5 px-4 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
                 >
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-slate-100">
                     {user.nickname}
                   </p>
-                  <p className="mt-1.5 text-sm text-slate-500">
+                  <p className="mt-1.5 text-sm text-slate-400">
                     {isCurrentUser ? "You" : "Connected"}
                   </p>
                 </div>
               );
             })
           ) : (
-            <div className="flex min-h-32 items-center justify-center rounded-2xl border border-dashed border-slate-300/90 bg-slate-50/70 p-6">
-              <p className="text-center leading-6 text-slate-500">
+            <div className="flex min-h-32 items-center justify-center rounded-2xl border border-dashed border-white/12 bg-white/4 p-6">
+              <p className="text-center leading-6 text-slate-400">
                 {connectionStatus === "disconnected"
                   ? "Backend not connected."
                   : "No users connected yet."}
@@ -176,7 +176,7 @@ export default function Home() {
         </div>
       </aside>
 
-      <section className="flex min-h-[50vh] items-center justify-center border-t border-slate-200/70 px-6 py-10 shadow-[-24px_0_48px_rgba(15,23,42,0.03)] md:min-h-screen md:border-t-0 md:border-l md:border-slate-200/80 md:px-10">
+      <section className="flex min-h-[50vh] items-center justify-center border-t border-white/8 px-6 py-10 shadow-[-24px_0_48px_rgba(0,0,0,0.2)] md:min-h-screen md:border-t-0 md:border-l md:border-white/8 md:px-10">
         <button
           className="w-full max-w-80 rounded-full bg-linear-to-r from-slate-950 via-slate-900 to-emerald-800 px-8 py-4 text-base font-bold tracking-[0.01em] text-white shadow-[0_20px_44px_rgba(5,150,105,0.18)] transition hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-600"
           type="button"
